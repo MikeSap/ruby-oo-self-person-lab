@@ -1,7 +1,7 @@
 require 'pry'
 class Person
-    attr_accessor :bank_account, :happiness, :hygiene
-    attr_reader :name
+    attr_accessor :bank_account
+    attr_reader :name, :happiness, :hygiene
     # attr_writer 
 
     def initialize(bank_account=25,happiness=8,hygiene=8,name)
@@ -9,6 +9,26 @@ class Person
         @happiness = happiness
         @hygiene = hygiene
         @name = name
+    end
+
+    def hygiene=(clean)
+        if clean < 0
+            @hygiene = 0
+        elsif clean > 10
+            @hygiene = 10
+        else
+            @hygiene = clean
+        end
+    end
+
+    def happiness=(smiles)
+        if smiles < 0
+            @happiness = 0
+        elsif smiles > 10
+            @happiness = 10
+        else
+            @happiness = smiles
+        end
     end
 
     def happy?
@@ -23,6 +43,28 @@ class Person
         @bank_account += salary
         "all about the benjamins"
     end
+
+    def take_bath
+        self.hygiene += 4
+        "♪ Rub-a-dub just relaxing in the tub ♫"
+    end
+
+    def work_out
+        self.happiness += 2
+        self.hygiene -= 3
+        "♪ another one bites the dust ♫"
+    end
+
+    def call_friend(friend)
+        self.happiness += 3
+        friend.happiness += 3
+        if self.name == "Penelope"
+            "Hi Felix! It's Penelope. How are you?"
+        else 
+            "Hi Penelope! It's Felix. How are you?"
+        end
+    end
+
 
 
 end
